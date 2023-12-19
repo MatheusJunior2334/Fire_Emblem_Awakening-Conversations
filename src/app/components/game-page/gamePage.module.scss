@@ -1,0 +1,125 @@
+@keyframes pageAnimation {
+    from {
+        transform: translateY(-560px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes showCharactersAnimation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#gamePage {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    
+    overflow-y: hidden;
+
+    background-image: url('../../../../public/assets/images/Conversations-background.jpg');
+    background-position: center;
+    background-size: cover;
+    animation: pageAnimation 1s forwards ease-in;
+
+    .characters {
+        position: relative;
+        width: 100%;
+        height: 90%;
+        top: 10%;
+        z-index: 1;
+    
+        display: flex;
+        justify-content: space-evenly;
+
+        .characterImageContainer {
+            position: relative;
+            width: 45%;
+            
+            display: flex;
+            justify-content: center;
+
+            &:first-child img {
+                transform: rotateY(180deg);
+            }
+
+            img {
+                width: auto;
+                height: auto;
+                transition: filter 0.5s ease;
+                animation: showCharactersAnimation 3s forwards ease-in-out;
+
+                &.speaking {
+                    filter: brightness(100%);
+                }
+
+                &.notSpeaking {
+                    filter: brightness(50%);
+                }
+            }
+        }
+        
+    }
+
+    // Caixa de diálogo
+    .dialogBox {
+        position: absolute;
+        width: auto;
+        max-width: 35%;
+        z-index: 2;
+        bottom: 2%;
+
+        &.leftCharacter {
+            left: 2%;
+        }
+
+        &.rightCharacter {
+            right: 2%;
+        }
+
+        .characterName {
+            background-color: #251D0F;
+
+            h3 {
+                color: #fff;
+                font-size: 30px;
+                text-align: center;
+            }
+        }
+
+        .characterText {
+            background: linear-gradient(#C7AB86 100%, #937E63 100%);
+            padding: 20px 40px;
+
+            p {
+                color: #362612;
+                font-size: 24px;
+                font-weight: 500;
+            }
+        }
+        
+    }
+
+    .previousButton {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
+
+    .nextButton {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 999;
+    }
+    
+}

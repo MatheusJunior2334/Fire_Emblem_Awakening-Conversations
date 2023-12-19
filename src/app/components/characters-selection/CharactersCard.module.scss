@@ -1,0 +1,97 @@
+@import '../../page.module.scss';
+
+$imageComponentHeight: 450px;
+
+@mixin characterButtonColor($color) {
+    background: radial-gradient(185.92% 185.92% at 50% 58.74%, $color 20%, rgba(0, 41, 113, 0.00) 100%);
+}
+
+#charactersCard {
+    width: 500px;
+    height: $imageComponentHeight;
+    
+    display: flex;
+    justify-content: space-evenly;
+    border: 0;
+    border-radius: 12px;
+    transition: box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 4px 4px 8px #00000055;
+    }
+
+    .imageContainer {
+        width: 65%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: auto;
+            height: calc($imageComponentHeight - 20px);
+        }
+    }
+
+    .textContainer {
+        width: 35%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0;
+
+        h3 {
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        .textContent {
+            width: 140px;
+            height: 140px;
+            border-radius: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease-in-out;
+            background-color: #00000050;
+            
+            p {
+                font-size: 18px;
+
+                display: flex;
+                align-items: center;
+                color: #fff;
+            }
+
+            &:hover {
+                transform: scale(104%) rotate(8deg);
+                background-color: #555;
+            }
+
+            &.lucina {
+                @include characterButtonColor(#3E4462);
+            }
+
+            &.chrom {
+                @include characterButtonColor(#21333E);
+            }
+
+            &.gaius {
+                @include characterButtonColor(#7F5C4A);
+            }
+
+            &.nowi {
+                @include characterButtonColor(#574359);
+            }
+
+            &.tharja {
+                @include characterButtonColor(#2D2D32);
+            }
+        }
+    }
+}
