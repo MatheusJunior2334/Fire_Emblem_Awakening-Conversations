@@ -4,3 +4,52 @@
 $desktop: '(max-width: 1280px)';
 $tablet: '(max-width: 768px)';
 $mobile: '(max-width: 480px)';
+
+/* Variáveis para tamanho de fontes */
+
+@mixin text-primary() {
+    font-size: 24px;
+    font-weight: normal;
+    color: #fff;
+
+    @media #{$mobile} {
+        font-size: 20px;
+    }
+}
+
+@mixin text-dialogues() {
+    font-size: 28px;
+    font-weight: 500;
+    color: #362612;
+
+    @media #{$mobile} {
+        font-size: 20px;
+    }
+}
+
+@mixin start-button() {
+    font-size: 20px;
+    font-weight: normal;
+    color: #000;
+}
+
+// Componente CharactersSelection
+@mixin selectCharactersTitle() {
+    font-size: 32px;
+    font-weight: normal;
+    color: #fff;
+
+    @media #{$mobile} {
+        font-size: 28px;
+    }
+}
+
+@mixin selectCharactersCaption() {
+    font-size: 20px;
+    font-weight: normal;
+    color: #fff;
+
+    @media #{$mobile} {
+        font-size: 16px;
+    }
+}

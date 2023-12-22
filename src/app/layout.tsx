@@ -15,7 +15,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt">
+    <html lang='pt'>
+      <head>
+        <link rel='shortcut icon' href='/favicon.svg' type='image/x-icon' />
+      </head>
       <body className={fredoka.className}>{children}</body>
     </html>
   )

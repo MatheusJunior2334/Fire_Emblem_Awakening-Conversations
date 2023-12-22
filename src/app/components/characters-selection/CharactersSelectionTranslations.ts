@@ -64,3 +64,9 @@ export const changeDialoguesLanguage: TranslationsType1 = {
     en: 'en',
     de: 'de'
 }
+
+export const loadingText: TranslationsType1 = {
+    pt: 'Carregando...',
+    en: 'Loading...',
+    de: 'Laden...'
+}

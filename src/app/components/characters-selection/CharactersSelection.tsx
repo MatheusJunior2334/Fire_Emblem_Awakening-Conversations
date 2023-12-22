@@ -5,13 +5,14 @@ import { CharactersCard } from "./CharactersCard";
 
 import { useLanguage } from "@/app/contexts/LanguageContext";
 
-import { selectCharactersText, selectTwoCharacters, errorCharacterCombination, startGameText, backHomeText, changeDialoguesLanguage } from "./CharactersSelectionTranslations";
+import { selectCharactersText, selectTwoCharacters, errorCharacterCombination, startGameText, backHomeText, changeDialoguesLanguage, loadingText } from "./CharactersSelectionTranslations";
 
 // Mapeamento de combinações válidas entre personagens
 const validCharacterCombinations: { [key: string]: string[] } = {
-    Lucina: ['Chrom'],
     Chrom: ['Lucina', 'Tharja'],
-    Tharja: ['Chrom']
+    Gaius: ['Tharja'],
+    Lucina: ['Chrom'],
+    Tharja: ['Chrom', 'Gaius']
 }
 
 // Interface representando informações de cada personagem
@@ -27,6 +28,7 @@ export const CharactersSelection: React.FC<{ onClose: () => void}> = ({ onClose 
     const [gameStarted, setGameStarted] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
+    const [allowStartDialogue, setAllowStartDialogue] = useState<boolean>(false);
 
     const { language } = useLanguage();
 
@@ -98,12 +100,30 @@ export const CharactersSelection: React.FC<{ onClose: () => void}> = ({ onClose 
         loadImages();
     }, [])
 
+    // Função para permitir ou não o início dos diálogos
+    useEffect(() => {
+        if (selectedCharacters.length === 2 && isValidCharactersCombination()) {
+            setAllowStartDialogue(true)
+        } else {
+            setAllowStartDialogue(false);
+        }
+    }, [selectCharactersText, isValidCharactersCombination])
+
     // Função para renderizar a seleção de personagens (componente)
     const renderCharactersSelection = () => (
         <div id={styles.charactersSelection}>
-            <h2>{selectCharactersText[language]}</h2>
-            <h4>{selectTwoCharacters[language].text1}</h4>
+
+            <header className={styles.charactersHeader}>
+                <div>
+                    <h2>{selectCharactersText[language]}</h2>
+                    <h4>{selectTwoCharacters[language].text1}</h4>
+                </div>
+
+                <button className={`${styles.startDialogueButton} ${allowStartDialogue ? styles.allowStart : styles.notAllowStart}`} onClick={startGame}>{startGameText[language]}</button>
+            </header>
+
             <div className={styles.cards}>
+
                 {charactersCardsInfo.map((characterInfo, index) => (
                     <CharactersCard
                         key={index}
@@ -115,15 +135,24 @@ export const CharactersSelection: React.FC<{ onClose: () => void}> = ({ onClose 
             </div>
 
             {errorMessage && <p>{errorMessage}</p>}
-            <button onClick={startGame}>{startGameText[language]}</button>
+            
             <button onClick={onClose}>{backHomeText[language]}</button>
         </div>  
     )
 
-    // TSX principal que condicionalmente renderiza a seleção de personagens ou a página de jogo
+    // TSX principal que condicionalmente renderiza a seleção de personagens, a página de jogo ou a tela de carregamento
+    const text = loadingText[language];
+
+    // Transforma cada caractere em um array de spans
+    const spans = text.split('').map((char, index) => (
+        <span key={index}>
+            {char}
+        </span>
+    ))
+
     return (
         <div>
-            {!imagesLoaded ? <p>Carregando...</p> : !gameStarted ? renderCharactersSelection() : <GamePage characters={selectedCharacters} language={changeDialoguesLanguage[language]} />}
+            {!imagesLoaded ? <div className={styles.loadingDiv}><p>{spans}</p></div> : !gameStarted ? renderCharactersSelection() : <GamePage characters={selectedCharacters} language={changeDialoguesLanguage[language]} />}
         </div>
     )
 }

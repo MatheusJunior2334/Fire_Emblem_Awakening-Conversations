@@ -9,10 +9,10 @@ import { useLanguage, TranslationsType1 } from '../../contexts/LanguageContext';
 
 interface LanguageButtonProps {
     languageCode: string;
-    languageCountry: string;
+    selectedLanguage: string;
 }
 
-const LanguageButton: React.FC<LanguageButtonProps> = ({ languageCode, languageCountry }) => {
+const LanguageButton: React.FC<LanguageButtonProps> = ({ languageCode, selectedLanguage }) => {
     const { changeLanguage, confirmLanguage, language } = useLanguage();
 
     const handleClick = () => {
@@ -29,7 +29,7 @@ const LanguageButton: React.FC<LanguageButtonProps> = ({ languageCode, languageC
             {languageCode === 'pt' && <PortugueseLanguageIcon />}
             {languageCode === 'en' && <EnglishLanguageIcon />}
             {languageCode === 'de' && <GermanLanguageIcon />}
-            <p>{languageCode + '-' + languageCountry}</p>
+            <p>{selectedLanguage}</p>
         </button>
     )
 }
@@ -53,9 +53,9 @@ export const SelectLanguage: React.FC = () => {
                 <h2>{translations[language]}</h2>
 
                 <div className={styles.languagesContent} >
-                    <LanguageButton languageCode='pt' languageCountry='BR' />
-                    <LanguageButton languageCode='en' languageCountry='UK' />
-                    <LanguageButton languageCode='de' languageCountry='DE' />
+                    <LanguageButton languageCode='pt' selectedLanguage='Português' />
+                    <LanguageButton languageCode='en' selectedLanguage='English' />
+                    <LanguageButton languageCode='de' selectedLanguage='Deutsch' />
                 </div>
 
             </div>

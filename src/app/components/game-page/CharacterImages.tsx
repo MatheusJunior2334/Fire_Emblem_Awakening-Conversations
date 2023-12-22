@@ -22,6 +22,24 @@ export const CharacterImages: React.FC<CharacterImagesProps> = ({ characters, di
         }
     }, [characters, dialogues, dialogIndex])
 
+    const getImageSize = () => {
+        let size = 450;
+
+        if (typeof window !== 'undefined') {
+            const width = window.innerWidth;
+
+            if (width >= 1280) {
+                size = 500;
+            } else if (width <= 768) {
+                size = 200;
+            } else if (width <= 480) {
+                size = 100;
+            }
+        }
+
+        return size;
+    }
+
     return (
         <div className={style.characters}>
             {characters.map((character, index) => (
@@ -29,10 +47,11 @@ export const CharacterImages: React.FC<CharacterImagesProps> = ({ characters, di
                     <Image
                         src={lastCharacterImages[character] || `/assets/images/${character}Normal.png`}
                         alt={dialogues[index].character}
-                        width={800}
-                        height={800}
+                        width={getImageSize()}
+                        height={getImageSize()}
                         priority
                         className={character === dialogues[dialogIndex].character ? style.speaking : style.notSpeaking}
+                   
                     />
                 </div>
             ))} 

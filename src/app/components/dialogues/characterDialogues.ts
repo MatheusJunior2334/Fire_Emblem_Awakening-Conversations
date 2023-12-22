@@ -15,6 +15,8 @@ export interface Translations {
 // Declaração para facilitar o caminho dos áudios
 let chromAudios = '/assets/audios/Chrom/Chrom_Voice_';
 let lucinaAudios = '/assets/audios/Lucina/Lucina_Voice_';
+let gaiusAudios = '/assets/audios/Gaius/Gaius_Voice_';
+let tharjaAudios = '/assets/audios/Tharja/Tharja_Voice_';
 
 export const ChromLucina: Dialogue[] = [
     { character: 'Lucina', text: 'prompt1', emotion: 'Normal', audio: `${lucinaAudios}1.wav` },
@@ -45,9 +47,28 @@ export const ChromLucina: Dialogue[] = [
     { character: 'Chrom', text: 'prompt25', emotion: 'Feliz', audio: `${chromAudios}4.wav` },
 ]
 
+// Marcação das falas de Tharja e Gaius
+export const GaiusTharja: Dialogue[] = [
+    { character: 'Tharja', text: 'prompt1', emotion: 'Normal' },
+    { character: 'Gaius', text: 'prompt2', emotion: '' },
+    { character: 'Tharja', text: 'prompt3', emotion: '' },
+    { character: 'Gaius', text: 'prompt4', emotion: '' },
+    { character: 'Tharja', text: 'prompt5', emotion: '' },
+    { character: 'Gaius', text: 'prompt6', emotion: '' },
+    { character: 'Tharja', text: 'prompt7', emotion: '' },
+    { character: 'Gaius', text: 'prompt8', emotion: '' },
+    { character: 'Tharja', text: 'prompt9', emotion: '' },
+    { character: 'Gaius', text: 'prompt10', emotion: '' },
+    { character: 'Tharja', text: 'prompt11', emotion: '' },
+    { character: 'Gaius', text: 'prompt12', emotion: '' },
+    { character: 'Tharja', text: 'prompt13', emotion: '' },
+    { character: 'Gaius', text: 'prompt14', emotion: '' },
+]
+
 export const characterEmotions: { [key: string] : string[] } = {
     Chrom: ['Normal', 'Feliz', 'Determinado', 'Dor'],
-    Lucina: ['Normal', 'Feliz', 'Determinada', 'Dor']
+    Gaius: ['Normal'],
+    Lucina: ['Normal', 'Feliz', 'Determinada', 'Dor'],
 }
 
 export const getCharacterImage = (character: string, emotion: string): string => {

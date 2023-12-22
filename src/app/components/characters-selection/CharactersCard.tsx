@@ -33,8 +33,8 @@ export const CharactersCard: React.FC<CharacterCardProps>  = ({ image, character
                 src={image}
                 alt={character}
                 priority
-                width={500}
-                height={500}
+                width={450}
+                height={450}
             />
            </div>
           

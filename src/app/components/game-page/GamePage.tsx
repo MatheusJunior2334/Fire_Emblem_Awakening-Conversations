@@ -39,12 +39,12 @@ export const GamePage: React.FC<GamePageProps> = ({ characters, language }) => {
                 characters={characters}
                 dialogues={dialogues}
                 dialogIndex={dialogIndex}
-            />
+            /> 
             <DialogueBox
                 character={dialogues[dialogIndex].character}
                 text={dialogues[dialogIndex].text}
                 isLeftCharacter={characters.indexOf(dialogues[dialogIndex].character) === 0}
-            />
+            /> 
             <AudioPlayer audioSrc={dialogues[dialogIndex].audio || ''} />
             <BackgroundMusic musicSrc='/assets/music/TheShepherdsGarrison.mp3' />
 

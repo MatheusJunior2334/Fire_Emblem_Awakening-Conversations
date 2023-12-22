@@ -30,5 +30,5 @@ export const BackgroundMusic: React.FC<BackgroundMusicProps> = ({ musicSrc }) =>
 
     }, [musicSrc])
 
-    return musicSrc ? <audio src={musicSrc} ref={audioRef} autoPlay={isUserInteracted} loop /> : null
+    return musicSrc ? <audio src={musicSrc} ref={audioRef} autoPlay={true} loop /> : null
 }

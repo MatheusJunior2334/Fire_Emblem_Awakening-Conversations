@@ -1,4 +1,3 @@
-
 // Fala entre Lucina e Chrom
 import { Translations } from "./characterDialogues";
 

@@ -10,26 +10,12 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc }) => {
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
-        const handleUserInteracted = () => {
-            if (audioSrc && !audioPlayed) {
-              setUserInteracted(true);
-              setAudioPlayed(true);
-      
-              if (audioRef.current) {
-                audioRef.current.volume = 0.5;
-                audioRef.current.play().catch((error) => {
-                  console.error("Erro ao reproduzir áudio:", error);
-                });
-              }
-            }
-          };
-      
-          document.addEventListener("click", handleUserInteracted);
-      
-          return () => {
-            document.addEventListener("click", handleUserInteracted);
-          };
-    }, [audioPlayed, audioSrc])
+      if (audioSrc && !audioPlayed) {
+        setTimeout(() => {
+          audioRef.current && audioRef.current.play();
+        }, 300)
+      }
+    }, [audioSrc, audioPlayed])
 
-    return audioSrc ? <audio ref={audioRef} src={audioSrc} autoPlay={userInteracted} /> : null;
+    return audioSrc ? <audio ref={audioRef} src={audioSrc} autoPlay={false} /> : null;
 }

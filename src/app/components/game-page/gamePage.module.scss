@@ -1,3 +1,5 @@
+@import '../../page.module.scss';
+
 @keyframes pageAnimation {
     from {
         transform: translateY(-560px);
@@ -28,7 +30,6 @@
     background-image: url('../../../../public/assets/images/Conversations-background.jpg');
     background-position: center;
     background-size: cover;
-    animation: pageAnimation 1s forwards ease-in;
 
     .characters {
         position: relative;
@@ -72,8 +73,7 @@
     // Caixa de diálogo
     .dialogBox {
         position: absolute;
-        width: auto;
-        max-width: 35%;
+        width: 45%;
         z-index: 2;
         bottom: 2%;
 
@@ -86,23 +86,73 @@
         }
 
         .characterName {
-            background-color: #251D0F;
+            position: relative;
+            height: 50px;
+
+            &.leftCharacter2 {
+
+                h3, img {
+                    left: 10%;
+                }
+            }
+    
+            &.rightCharacter2 {
+                
+                h3, img {
+                    right: 10%;
+                }
+            }
 
             h3 {
+                position: absolute;
+                width: 280px;
+                height: 100%;
                 color: #fff;
                 font-size: 30px;
                 text-align: center;
+                font-weight: 500;
+                
+                top: 24%;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 4;
+            }
+            
+            img {
+                position: absolute;
+                width: 280px;
+                height: 100%;
+                top: 24%;
+                z-index: 3;
             }
         }
 
         .characterText {
-            background: linear-gradient(#C7AB86 100%, #937E63 100%);
-            padding: 20px 40px;
+            position: relative;
+            width: 100%;
+            height: 150px;
 
             p {
-                color: #362612;
-                font-size: 24px;
-                font-weight: 500;
+                @include text-dialogues();
+                position: absolute;
+                width: 95%;
+                height: 100%;
+                left: 2.5%;
+                top: 0;
+
+                display: flex;
+                align-items: center;
+                z-index: 2;
+            }
+
+            img {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
             }
         }
         
