@@ -4,8 +4,7 @@ import styles from './CharactersCard.module.scss';
 
 import { useLanguage} from '@/app/contexts/LanguageContext';
 import { CharacterInfo } from './CharactersSelection';
-
-import { characterTextCard } from './charactersSelectionTranslations';
+import { characterTextCard } from '@/app/components/characters-selection/charactersSelectionTranslations';
 
 interface CharacterCardProps extends CharacterInfo {
     isSelected: boolean;
