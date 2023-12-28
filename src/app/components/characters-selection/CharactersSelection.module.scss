@@ -9,13 +9,33 @@ $wave-amplitude: 8px;
     }
 }
 
+@keyframes showCharacters {
+    from {
+        bottom: -2%;
+    }
+
+    to {
+        bottom: 1%;
+    }
+}
+
+@keyframes hideCharacters {
+    from {
+        bottom: 1%;
+    }
+
+    to {
+        bottom: -2%;
+    }
+}
+
 // Estilização principal
 #charactersSelection {
     width: 100%;
-    max-height: 100vh;
+    height: 100vh;
     overflow-y: scroll;
-    background-color: #00000085;
-
+    background-color: #00000050;
+   
     .charactersHeader {
         position: sticky;
         width: 100%;
@@ -64,7 +84,7 @@ $wave-amplitude: 8px;
             cursor: pointer;
 
             &:hover {
-                transform: scale(104%);
+                transform: scale(1.04);
             }
 
             &.allowStart {
@@ -87,6 +107,88 @@ $wave-amplitude: 8px;
 
     .selected {
         width: 500px;
+    }
+
+    .showSelectedCharactersContainer {
+        position: fixed;
+        right: 2%;
+        bottom: 0;
+        display: flex;
+        column-gap: 8px;
+        
+        &.addAnimation {
+            animation: showCharacters 2s forwards ease;
+        }
+
+        &.removeAnimation {
+            animation: hideCharacters 2s forwards ease;
+        }
+
+        .showSelectedCharactersContent {
+            border-radius: 8px;
+
+            p {
+                font-size: 16px;
+                color: #fff;
+                padding: 4px 12px;
+                
+            }
+
+            &.chrom {
+                @include characterButtonColor($chrom);
+            }
+
+            &.cordelia {
+                @include characterButtonColor($cordelia);
+            }
+
+            &.gaius {
+                @include characterButtonColor($gaius);
+            }
+
+            &.henry {
+                @include characterButtonColor($henry)
+            }
+
+            &.lucina {
+                @include characterButtonColor($lucina);
+            }
+
+            &.nowi {
+                @include characterButtonColor($nowi);
+            }
+
+            &.tharja {
+                @include characterButtonColor($tharja);
+            }
+        }
+    }
+}
+
+// Div da tela de erro
+.errorDiv {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0 0 0 / 0.5);
+    z-index: 6;
+    
+    div {
+        width: 25%;
+        background-color: #932E1F;
+
+        p {
+            color: #fff;
+            font-size: 24px;
+            padding: 20px;
+        }
     }
 }
 
@@ -114,5 +216,38 @@ $wave-amplitude: 8px;
 @for $i from 1 through 15 {
     .loadingDiv p span:nth-child(#{$i}) {
         animation-delay: #{0.1s * $i};
+    }
+}
+
+
+// Responsividade
+
+@media #{$desktop} {
+    #charactersSelection {
+
+        .charactersHeader {
+
+            .startDialogueButton {
+                right: 6%;
+            }
+        }
+    }
+}
+
+@media #{$tablet} {
+    #charactersSelection {
+
+        .charactersHeader {
+            height: 80px;
+
+            .startDialogueButton {
+                right: 2%;
+            }
+        }
+
+        .cards {
+            margin-top: 14px;
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 }

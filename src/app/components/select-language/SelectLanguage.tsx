@@ -29,7 +29,7 @@ const LanguageButton: React.FC<LanguageButtonProps> = ({ languageCode, selectedL
             {languageCode === 'pt' && <PortugueseLanguageIcon />}
             {languageCode === 'en' && <EnglishLanguageIcon />}
             {languageCode === 'de' && <GermanLanguageIcon />}
-            <p>{selectedLanguage}</p>
+            {selectedLanguage}
         </button>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 interface BackgroundMusicProps {
-    musicSrc: string;
+  musicSrc: string | null;
 }
 
 export const BackgroundMusic: React.FC<BackgroundMusicProps> = ({ musicSrc }) => {

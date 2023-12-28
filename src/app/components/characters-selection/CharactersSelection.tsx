@@ -5,30 +5,40 @@ import { CharactersCard } from "./CharactersCard";
 
 import { useLanguage } from "@/app/contexts/LanguageContext";
 
-import { selectCharactersText, selectTwoCharacters, errorCharacterCombination, startGameText, backHomeText, changeDialoguesLanguage, loadingText } from "./CharactersSelectionTranslations";
+import { selectCharactersText, selectTwoCharacters, errorCharacterCombination, startGameText, backHomeText, changeDialoguesLanguage, loadingText } from "./charactersSelectionTranslations";
+import { SoundtrackConfirmation } from "../soundtrack-confirmation/SoundtrackConfirmation";
 
 // Mapeamento de combinações válidas entre personagens
 const validCharacterCombinations: { [key: string]: string[] } = {
-    Chrom: ['Lucina', 'Tharja'],
-    Gaius: ['Tharja'],
+    Chrom: ['Gaius', 'Lucina'],
+    Gaius: ['Chrom', 'Tharja'],
     Lucina: ['Chrom'],
-    Tharja: ['Chrom', 'Gaius']
+    Tharja: ['Gaius']
 }
 
 // Interface representando informações de cada personagem
 export interface CharacterInfo {
     image: string;
     character: string;
-    classCharacter: string;
 }
 
+interface CharactersSelectionProps {
+    onClose: () => void;
+    onRestartGame: () => void;
+}
 
-export const CharactersSelection: React.FC<{ onClose: () => void}> = ({ onClose }) => {
+export const CharactersSelection: React.FC<CharactersSelectionProps> = ({ onClose, onRestartGame }) => {
     const [selectedCharacters, setSelectedCharacters] = useState<string[]>([]);
     const [gameStarted, setGameStarted] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
     const [allowStartDialogue, setAllowStartDialogue] = useState<boolean>(false);
+
+    // Constantes para habilitar ou não a trilha de fundo e as vozes dos personagens
+    const [enableBackgroundMusic, setEnableBackgroundMusic] = useState<boolean>(false);
+    const [enableAudioPlayer, setEnableAudioPlayer] = useState<boolean>(false);
+    const [confirmChoices, setConfirmChoices] = useState<boolean>(false);
+
 
     const { language } = useLanguage();
 
@@ -64,11 +74,14 @@ export const CharactersSelection: React.FC<{ onClose: () => void}> = ({ onClose 
 
     // Informações que compõem as Cards de cada personagem
     const charactersCardsInfo: CharacterInfo[] = [
-        { image: '/assets/images/LucinaCard.png', character: 'Lucina', classCharacter: 'lucina' },
-        { image: '/assets/images/ChromCard.png', character: 'Chrom', classCharacter: 'chrom',},
-        { image: '/assets/images/GaiusCard.png', character: 'Gaius', classCharacter: 'gaius' },
-        { image: '/assets/images/NowiCard.png', character: 'Nowi', classCharacter: 'nowi' },
-        { image: '/assets/images/TharjaCard.png', character: 'Tharja', classCharacter: 'tharja' }
+        { image: '/assets/images/ChromCard.png', character: 'Chrom'},
+        { image: '/assets/images/CordeliaCard.png', character: 'Cordelia' },
+        { image: '/assets/images/GaiusCard.png', character: 'Gaius' },
+        { image: '/assets/images/HenryCard.png', character: 'Henry' },
+        
+        { image: '/assets/images/LucinaCard.png', character: 'Lucina' },
+        { image: '/assets/images/NowiCard.png', character: 'Nowi' },
+        { image: '/assets/images/TharjaCard.png', character: 'Tharja' }
     ]
 
     // Função assíncrona para verificar carregamento de imagem
@@ -100,14 +113,30 @@ export const CharactersSelection: React.FC<{ onClose: () => void}> = ({ onClose 
         loadImages();
     }, [])
 
-    // Função para permitir ou não o início dos diálogos
+
+    // Lógica para permitir ou não o início dos diálogos
     useEffect(() => {
         if (selectedCharacters.length === 2 && isValidCharactersCombination()) {
             setAllowStartDialogue(true)
         } else {
             setAllowStartDialogue(false);
         }
-    }, [selectCharactersText, isValidCharactersCombination])
+    }, [selectedCharacters, isValidCharactersCombination])
+
+
+    // Funções para habilitar ou não a trilha de fundo e as vozes dos personagens (Função será utilizada no componente SoundtrackConfirmation)
+    const toggleBackgroundMusic = () => {
+        setEnableBackgroundMusic(!enableBackgroundMusic);
+    }
+
+    const toggleAudioPlayer = () => {
+        setEnableAudioPlayer(!enableAudioPlayer);
+    }
+
+    const handleConfirmMusicChoices = () => {
+        setConfirmChoices(true);
+    }
+
 
     // Função para renderizar a seleção de personagens (componente)
     const renderCharactersSelection = () => (
@@ -134,9 +163,28 @@ export const CharactersSelection: React.FC<{ onClose: () => void}> = ({ onClose 
                 ))}
             </div>
 
-            {errorMessage && <p>{errorMessage}</p>}
+            {/* Div que será renderizada caso houver um erro na escolha de personagens */}
+            {errorMessage && (
+                <div className={styles.errorDiv}>
+                    <div>
+                        <p>{errorMessage}</p>
+                        <button onClick={() => setErrorMessage('')}>OK</button>
+                    </div>
+                </div>
+            )}
             
             <button onClick={onClose}>{backHomeText[language]}</button>
+
+            
+            <div className={styles.showSelectedCharactersContainer}>
+                {selectedCharacters && selectedCharacters.map((character) => (
+                    <div className={`${styles.showSelectedCharactersContent} ${styles[character.toLowerCase()]}`} key={character}>
+                        <p>{character}</p>
+                    </div>
+                ))}
+            </div>
+            
+
         </div>  
     )
 
@@ -152,7 +200,35 @@ export const CharactersSelection: React.FC<{ onClose: () => void}> = ({ onClose 
 
     return (
         <div>
-            {!imagesLoaded ? <div className={styles.loadingDiv}><p>{spans}</p></div> : !gameStarted ? renderCharactersSelection() : <GamePage characters={selectedCharacters} language={changeDialoguesLanguage[language]} />}
+            {!imagesLoaded ? (
+                <div className={styles.loadingDiv}>
+                    <p>{spans}</p>
+                </div> 
+            ): !gameStarted ? (
+                renderCharactersSelection()
+            ) : (
+                <>
+                    {!confirmChoices ? (
+                        <SoundtrackConfirmation
+                            backgroundMusic={toggleBackgroundMusic}
+                            isBackgroundMusic={enableBackgroundMusic}
+                            audioPlayer={toggleAudioPlayer}
+                            isAudioPlayer={enableAudioPlayer}
+                            confirmChoices={handleConfirmMusicChoices}
+                            selectedCharacters={selectedCharacters}
+                        />
+                    ) : (
+                        <GamePage
+                            characters={selectedCharacters}
+                            language={changeDialoguesLanguage[language]}
+                            enableBackgroundMusic={enableBackgroundMusic}
+                            enableAudioPlayer={enableAudioPlayer}
+                            onRestartGame={onRestartGame}
+                        />
+                    )}
+                    
+                </>
+            )}
         </div>
     )
 }

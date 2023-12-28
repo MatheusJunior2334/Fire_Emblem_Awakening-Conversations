@@ -5,18 +5,23 @@ import styles from './CharactersCard.module.scss';
 import { useLanguage} from '@/app/contexts/LanguageContext';
 import { CharacterInfo } from './CharactersSelection';
 
-import { characterTextCard } from './CharactersSelectionTranslations';
+import { characterTextCard } from './charactersSelectionTranslations';
 
 interface CharacterCardProps extends CharacterInfo {
     isSelected: boolean;
     onClick: () => void;
 }
 
-export const CharactersCard: React.FC<CharacterCardProps>  = ({ image, character, classCharacter, isSelected, onClick }) => {
+export const CharactersCard: React.FC<CharacterCardProps>  = ({ image, character, isSelected, onClick }) => {
     const { language } = useLanguage();
 
     // Constante para facilitar a importação da imagem de fundo
     const backgroundImage = `url("/assets/images/${character + 'Background.png'}")`;
+
+    // Constante para facilitar a nomeação do personagem para escolher a classe (estilização) adjacente
+    const classCharacter = character.toLowerCase();
+
+    // Constante para organizar o nome dos personagens em ordem alfabética, para evitar erros no alt
 
     return (
         <button
@@ -24,8 +29,9 @@ export const CharactersCard: React.FC<CharacterCardProps>  = ({ image, character
             id={styles.charactersCard}
             onClick={onClick}
             style={{
-                background: isSelected ? `lightgray ${backgroundImage} 50% / cover no-repeat`: 'lightgray 50%'
+                background: isSelected ? `#D9D9D9 ${backgroundImage} 50% / cover no-repeat`: '#D9D9D9 50%'
             }}
+            title={`${!isSelected ? characterTextCard[language].text1 : characterTextCard[language].text2}: ${character}`}
         >
            <div className={styles.imageContainer}>
             {/* Essa escolha de tamanho é para priorizar a qualidade da imagem, o seu tamanho real foi mudado pelo scss */}

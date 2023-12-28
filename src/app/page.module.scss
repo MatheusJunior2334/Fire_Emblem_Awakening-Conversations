@@ -2,10 +2,49 @@
 
 /* Variáveis para tamanhos de tela */
 $desktop: '(max-width: 1280px)';
+$laptop: '(max-width: 1000px)';
 $tablet: '(max-width: 768px)';
 $mobile: '(max-width: 480px)';
 
-/* Variáveis para tamanho de fontes */
+/* Variáveis para cores */
+$textColor: #473318;
+
+/* Variáveis (mixin) para tamanho de fontes */
+
+@mixin title-primary() {
+    font-size: 40px;
+    font-weight: normal;
+    color: #000;
+
+    @media #{$desktop} {
+        font-size: 34px;
+    }
+
+    @media #{$tablet} {
+        font-family: inherit;
+        font-size: 30px;
+        color: #000;
+    }
+}
+
+@mixin button-primary() {
+    font-family: inherit;
+    font-size: 20px;
+    border: 0;
+    cursor: pointer;
+
+    @media #{$desktop} {
+        font-size: 18px;
+    }
+
+    @media #{$laptop} {
+        font-size: 16px;
+    }
+
+    @media #{$tablet} {
+        font-size: 14px;
+    }
+}
 
 @mixin text-primary() {
     font-size: 24px;
@@ -17,21 +56,71 @@ $mobile: '(max-width: 480px)';
     }
 }
 
+
+// Componente GamePage
+@mixin title-dialogues() {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 500;
+    color: #fff;
+
+    @media #{$desktop} {
+        font-size: 28px;
+    }
+
+    @media #{$laptop} {
+        font-size: 26px;
+    }
+
+    @media #{$tablet} {
+        font-size: 24px;
+    }
+}
+
 @mixin text-dialogues() {
     font-size: 28px;
     font-weight: 500;
-    color: #362612;
+    color: $textColor;
+
+    @media #{$desktop} {
+        font-size: 26px;
+    }
+
+    @media #{$laptop} {
+        font-size: 24px;
+    }
+
+    @media #{$tablet} {
+        font-size: 22px;
+    }
 
     @media #{$mobile} {
         font-size: 20px;
     }
 }
 
+// Componente HomePage
 @mixin start-button() {
+    font-family: inherit;
     font-size: 20px;
     font-weight: normal;
-    color: #000;
+    color: $textColor;
+    background-color: #F2EBD5;
+    border: 0;
+    
+    @media #{$desktop} {
+        font-size: 18px;
+    }
+
+    @media #{$laptop} {
+        font-size: 16px;
+    }
+
+    @media #{$mobile} {
+        font-size: 14px;
+    }
 }
+
 
 // Componente CharactersSelection
 @mixin selectCharactersTitle() {
@@ -39,7 +128,11 @@ $mobile: '(max-width: 480px)';
     font-weight: normal;
     color: #fff;
 
-    @media #{$mobile} {
+    @media #{$desktop} {
+        font-size: 30px;
+    }
+
+    @media #{$tablet} {
         font-size: 28px;
     }
 }
@@ -49,7 +142,24 @@ $mobile: '(max-width: 480px)';
     font-weight: normal;
     color: #fff;
 
-    @media #{$mobile} {
+    @media #{$desktop} {
+        font-size: 18px;
+    }
+
+    @media #{$tablet} {
         font-size: 16px;
     }
+}
+
+/* Variáveis para determinar a cor característica de cada personagem */
+$chrom: #21333E;
+$cordelia: #945151;
+$gaius: #7F5C4A;
+$henry: #664E63;
+$lucina: #3E4462;
+$nowi: #574359;
+$tharja: #2D2D32;
+
+@mixin characterButtonColor($color) {
+    background: radial-gradient(185.92% 185.92% at 50% 58.74%, $color 20%, rgba(0, 41, 113, 0.00) 100%);
 }

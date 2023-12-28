@@ -51,7 +51,6 @@ export const CharacterImages: React.FC<CharacterImagesProps> = ({ characters, di
                         height={getImageSize()}
                         priority
                         className={character === dialogues[dialogIndex].character ? style.speaking : style.notSpeaking}
-                   
                     />
                 </div>
             ))} 
