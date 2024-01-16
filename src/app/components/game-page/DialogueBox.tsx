@@ -1,6 +1,6 @@
 import React from "react";
 
-import style from './GamePage.module.scss';
+import style from './gamePage.module.scss';
 
 import Image from "next/image";
 

@@ -4,7 +4,7 @@ import { CharacterImages } from "./CharacterImages";
 
 import { getDialoguesByCharacters } from "../../utils/dialogueUtils";
 
-import styles from './GamePage.module.scss';
+import styles from './gamePage.module.scss';
 
 import { AudioPlayer } from "../dialogues/AudioPlayer";
 import { BackgroundMusic } from "./BackgroundMusic";
