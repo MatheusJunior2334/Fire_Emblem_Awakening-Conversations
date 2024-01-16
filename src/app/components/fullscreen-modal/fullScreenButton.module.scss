@@ -1,14 +1,41 @@
+// Animações
+@keyframes enterFullscreenAnimation {
+    10%{ transform: scale(1.2) }
+    20%, 30%, 40%, 50%{ transform: scale(1) }
+    60%{ transform: scale(1.2) }
+    70%, 80%, 90%, 100%{ transform: scale(1) }
+}
+
+
+// Estilização principal
+
 #fullScreenButton {
     position: fixed;
-    bottom: 0%;
-    left: 0%;
-    // transform: translate(-50%, -50%);
-    z-index: 998;
+    top: 1%;
+    left: 1%;
+    z-index: 8;
 
     .fullScreenButtonContent {
-        padding: 5px 10px;
-        font-size: 14px;
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        border: none;
+        border-radius: 5px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
+
+        svg {
+            width: 25px;
+            height: 25px;
+            fill: #000;
+        }
+
+        .enterFullscreenIcon {
+            animation: enterFullscreenAnimation 10s infinite ease-in-out;
+        }
     }
 }
   

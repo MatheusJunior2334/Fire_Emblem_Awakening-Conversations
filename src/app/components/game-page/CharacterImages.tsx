@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-import style from './gamePage.module.scss';
+import styles from './GamePage.module.scss';
 import { Dialogue, getCharacterImage } from "../dialogues/characterDialogues";
 
 interface CharacterImagesProps {
@@ -41,16 +41,16 @@ export const CharacterImages: React.FC<CharacterImagesProps> = ({ characters, di
     }
 
     return (
-        <div className={style.characters}>
+        <div className={styles.characters}>
             {characters.map((character, index) => (
-                <div key={index} className={style.characterImageContainer}>
+                <div key={index} className={styles.characterImageContainer}>
                     <Image
                         src={lastCharacterImages[character] || `/assets/images/${character}Normal.png`}
                         alt={dialogues[index].character}
                         width={getImageSize()}
                         height={getImageSize()}
                         priority
-                        className={character === dialogues[dialogIndex].character ? style.speaking : style.notSpeaking}
+                        className={character === dialogues[dialogIndex].character ? styles.speaking : styles.notSpeaking}
                     />
                 </div>
             ))} 

@@ -9,16 +9,22 @@ import { ChromGaiusDialogues } from "../components/dialogues/chromGaiusDialogues
 import { GaiusTharja } from "../components/dialogues/characterDialogues";
 import { GaiusTharjaDialogues } from "../components/dialogues/gaiusTharjaDialogues";
 
+import { HenryTharja } from "../components/dialogues/characterDialogues";
+import { HenryTharjaDialogues } from "../components/dialogues/henryTharjaDialogues";
+
 export const getLocalizedText = (textKey: string, lang: string, character: string): string => {
     switch (character) {
         case 'Chrom,Lucina' || 'Lucina,Chrom':
             return ChromLucinaDialogues[lang][textKey] || textKey; 
 
         case 'Chrom,Gaius' || 'Gaius,Chrom':
-            return ChromGaiusDialogues[lang][textKey] || textKey
+            return ChromGaiusDialogues[lang][textKey] || textKey;
 
         case 'Gaius,Tharja' || 'Tharja,Gaius':
-            return GaiusTharjaDialogues[lang][textKey] || textKey
+            return GaiusTharjaDialogues[lang][textKey] || textKey;
+
+        case 'Henry,Tharja' || 'Tharja,Henry':
+            return HenryTharjaDialogues[lang][textKey] || textKey;
 
         default:
             return textKey;
@@ -34,7 +40,7 @@ export const getDialoguesByCharacters = (characters: string[], lang: string): Di
             return ChromLucina.map((dialogue) => ({
                 ...dialogue,
                 text: getLocalizedText(dialogue.text, lang, characterKey)
-            }));
+            }))
 
         case 'Chrom,Gaius':
             return ChromGaius.map((dialogue) => ({
@@ -44,6 +50,12 @@ export const getDialoguesByCharacters = (characters: string[], lang: string): Di
 
         case 'Gaius,Tharja':
             return GaiusTharja.map((dialogue) => ({
+                ...dialogue,
+                text: getLocalizedText(dialogue.text, lang, characterKey)
+            }))
+
+        case 'Henry,Tharja':
+            return HenryTharja.map((dialogue) => ({
                 ...dialogue,
                 text: getLocalizedText(dialogue.text, lang, characterKey)
             }))

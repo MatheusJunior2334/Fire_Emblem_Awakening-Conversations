@@ -5,6 +5,7 @@ interface LanguageContextType {
     changeLanguage: (newLanguage: string) => void;
     islanguageConfirmed: boolean;
     confirmLanguage: () => void;
+    handleChangeLanguage: () => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -25,8 +26,12 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         setIsLanguageConfirmed(true);
     }
 
+    const handleChangeLanguage = () => {
+        setIsLanguageConfirmed(false);
+    }
+
     return (
-        <LanguageContext.Provider value={{ language, changeLanguage, islanguageConfirmed, confirmLanguage }} >
+        <LanguageContext.Provider value={{ language, changeLanguage, islanguageConfirmed, confirmLanguage, handleChangeLanguage}} >
             {children}
         </LanguageContext.Provider>
     )

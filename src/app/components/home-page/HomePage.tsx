@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useEffect, useState } from 'react';
 import styles from './HomePage.module.scss';
 
@@ -9,11 +7,22 @@ import { useLanguage, TranslationsType1, TranslationsType2 } from '../../context
 import { useOrientation } from '../screen-orientation/useOrientation';
 import { shouldPromptOrientationChange } from '@/app/utils/orientationUtils';
 import { ScreenOrientation } from '../screen-orientation/ScreenOrientation';
+import { FullScreenButton } from '../fullscreen-modal/FullScreenButton';
+
+import { PortugueseLanguageIcon } from '../../../../public/assets/icons/PortugueseLanguageIcon';
+import { EnglishLanguageIcon } from '../../../../public/assets/icons/EnglishLanguageIcon';
+import { GermanLanguageIcon } from '../../../../public/assets/icons/GermanLanguageIcon';
 
 const buttonTexts: TranslationsType1 = {
     pt: 'Iniciar',
     en: 'Start',
     de: 'Starten'
+}
+
+const changeLanguageTitleText: TranslationsType1 = {
+    pt: 'Mudar idioma',
+    en: 'Change language',
+    de: 'Sprache ändern'
 }
 
 const creditsTexts: TranslationsType2 = {
@@ -32,7 +41,7 @@ const creditsTexts: TranslationsType2 = {
 }
 
 export const HomePage: React.FC = () => {
-    const { language } = useLanguage();
+    const { language, handleChangeLanguage } = useLanguage();
 
     const [openGame, setOpenGame] = useState<boolean>(false);
     const isClient = typeof window !== 'undefined';
@@ -68,10 +77,10 @@ export const HomePage: React.FC = () => {
     const screenAspectRatio = screenWidth / screenHeight;
 
     const backgroundSize = Math.abs(screenAspectRatio - imageAspectRatio) > 0.2 ? 'contain' : 'cover';
-
    
     const renderHomePage = () => (
         <div>
+            <FullScreenButton />
             <SelectLanguage />
             <main id={styles.homePage} style={{ backgroundSize }}>
                 {openGame ? (
@@ -85,8 +94,14 @@ export const HomePage: React.FC = () => {
                         </div>
 
                         <div className={styles.homeRight}>
+                            <button className={styles.languageIcon} onClick={handleChangeLanguage} title={changeLanguageTitleText[language]}>
+                                {language === 'pt' && <PortugueseLanguageIcon />}
+                                {language === 'en' && <EnglishLanguageIcon />}
+                                {language === 'de' && <GermanLanguageIcon />}
+                            </button>
+
                             <div className={styles.credits}>
-                                <p>{creditsTexts[language].text1} <span> Matheus Júnior</span></p>
+                                <p>{creditsTexts[language].text1} <a href='https://www.linkedin.com/in/matheus-j%C3%BAnior/' target='_blank' rel='noopener noreferrer'> Matheus Júnior</a></p>
                                 <p>{creditsTexts[language].text2}</p>
                             </div>
                         </div>

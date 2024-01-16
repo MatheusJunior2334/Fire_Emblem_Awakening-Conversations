@@ -30,6 +30,8 @@
 
     display: flex;
     align-items: flex-end;
+    -webkit-tap-highlight-color: transparent;
+    cursor: url('../../../../public/assets/icons/TouchIcon.svg'), pointer;
 
     .characters {
         position: relative;

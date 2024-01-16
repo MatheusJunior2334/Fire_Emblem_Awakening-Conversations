@@ -12,6 +12,7 @@ $textColor: #473318;
 /* Variáveis (mixin) para tamanho de fontes */
 
 @mixin title-primary() {
+    font-family: inherit;
     font-size: 40px;
     font-weight: normal;
     color: #000;
@@ -20,10 +21,8 @@ $textColor: #473318;
         font-size: 34px;
     }
 
-    @media #{$tablet} {
-        font-family: inherit;
+    @media #{$tablet} {   
         font-size: 30px;
-        color: #000;
     }
 }
 
@@ -148,6 +147,39 @@ $textColor: #473318;
 
     @media #{$tablet} {
         font-size: 16px;
+    }
+}
+
+@mixin warningTitle() {
+    font-size: 34px;
+    font-weight: normal;
+    color: #F00;
+    text-align: center;
+
+    @media #{$desktop} {
+        font-size: 32px;
+    }
+
+    @media #{$tablet} {
+        font-size: 30px;
+    }
+
+    @media #{$mobile} {
+        font-size: 28px;
+    }
+}
+
+@mixin warningText {
+    font-size: 24px;
+    color: #000;
+    text-align: left;
+
+    @media #{$desktop} {
+        font-size: 22px;
+    }
+
+    @media #{$tablet} {
+        font-size: 20px;
     }
 }
 

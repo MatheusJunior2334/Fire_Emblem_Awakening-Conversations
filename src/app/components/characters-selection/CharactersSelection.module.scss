@@ -32,9 +32,9 @@ $wave-amplitude: 8px;
 // Estilização principal
 #charactersSelection {
     width: 100%;
-    height: 100vh;
+    height: 100lvh;
     overflow-y: scroll;
-    background-color: #00000050;
+    background-color: #00000060;
    
     .charactersHeader {
         position: sticky;
@@ -112,7 +112,7 @@ $wave-amplitude: 8px;
     .showSelectedCharactersContainer {
         position: fixed;
         right: 2%;
-        bottom: 0;
+        bottom: 4px;
         display: flex;
         column-gap: 8px;
         
@@ -169,7 +169,7 @@ $wave-amplitude: 8px;
 .errorDiv {
     position: fixed;
     width: 100%;
-    height: 100vh;
+    height: 100lvh;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -181,13 +181,46 @@ $wave-amplitude: 8px;
     z-index: 6;
     
     div {
-        width: 25%;
-        background-color: #932E1F;
+        width: 30%;
+        background-color: #FFF;
+        padding: 10px 20px;
+        box-sizing: content-box;
+        border-radius: 14px;
+
+        display: flex;
+        flex-direction: column;
+
+        h4 {
+           @include warningTitle();
+        }
 
         p {
-            color: #fff;
-            font-size: 24px;
-            padding: 20px;
+            @include warningText();
+            padding: 10px 0px;
+
+            display: inline-block;
+
+            span {
+                color: #0029FF;
+            }
+        }
+
+        button {
+            font-size: 18px;
+            color: #FFF;
+            background-color: #224413;
+            border: none;
+            border-radius: 8px;
+            padding: 5px 25px;
+            margin-top: 18px;
+
+            align-self: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.1);
+            }
         }
     }
 }
@@ -195,7 +228,7 @@ $wave-amplitude: 8px;
 // Div da tela de carregamento
 .loadingDiv {
     width: 100%;
-    height: 100vh;
+    height: 100lvh;
     background-color: rgb(0 0 0 / 0.9);
 
     display: flex;
@@ -231,6 +264,13 @@ $wave-amplitude: 8px;
                 right: 6%;
             }
         }
+
+        .errorDiv {
+            
+            div {
+                width: 36%;
+            }
+        }
     }
 }
 
@@ -248,6 +288,25 @@ $wave-amplitude: 8px;
         .cards {
             margin-top: 14px;
             grid-template-columns: repeat(1, 1fr);
+        }
+
+        .errorDiv {
+            
+            div {
+                width: 44%;
+            }
+        }
+    }
+}
+
+@media #{$mobile} {
+    #charactersSelection {
+
+        .errorDiv {
+            
+            div {
+                width: 60%;
+            }
         }
     }
 }

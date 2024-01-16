@@ -8,12 +8,22 @@
     100%{ transform: scale(1) }
 }
 
+@keyframes languageIconHover {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 // Estilização principal
 
 #homePage {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100lvh;
 
     background-image: url('../../../../public/assets/images/HomeBackground.jpg');
     background-position: center;
@@ -51,6 +61,30 @@
             justify-content: flex-end;
             align-items: flex-end;
 
+            .languageIcon {
+                position: fixed;
+                width: 50px;
+                height: 50px;
+                top: 1%;
+                right: 1%;
+        
+                border: none;
+                background-color: transparent;
+                border-radius: 100%;
+                box-shadow: 2px 2px 5px #000;
+                cursor: pointer;
+
+                svg {
+                    width: 100%;
+                    height: 100%;
+                    vertical-align: middle;
+                }
+
+                &:hover svg {
+                    animation: languageIconHover 1.2s ease-in-out;
+                }
+            }
+
             .credits {
                 width: 350px;
                 height: 180px;
@@ -69,8 +103,9 @@
                     font-size: 18px;
                     text-align: center;
 
-                    span {
+                    a {
                         color: #0359FF;
+                        text-decoration: none;
 
                         cursor: pointer;
                     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './SelectLanguage.module.scss';
 
 import { PortugueseLanguageIcon } from '../../../../public/assets/icons/PortugueseLanguageIcon';

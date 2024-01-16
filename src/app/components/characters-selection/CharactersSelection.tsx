@@ -5,15 +5,28 @@ import { CharactersCard } from "./CharactersCard";
 
 import { useLanguage } from "@/app/contexts/LanguageContext";
 
-import { selectCharactersText, selectTwoCharacters, errorCharacterCombination, startGameText, backHomeText, changeDialoguesLanguage, loadingText } from "./charactersSelectionTranslations";
+import {
+    selectCharactersText,
+    errorOnlyTwoCharacters,
+    errorCharactersCombination,
+    errorSelectTwoCharacters,
+    warningMessageTitle,
+    tipMessageTitle,
+    startGameText,
+    backHomeText,
+    changeDialoguesLanguage,
+    loadingText,
+} from "./charactersSelectionTranslations";
+
 import { SoundtrackConfirmation } from "../soundtrack-confirmation/SoundtrackConfirmation";
 
 // Mapeamento de combinações válidas entre personagens
 const validCharacterCombinations: { [key: string]: string[] } = {
     Chrom: ['Gaius', 'Lucina'],
     Gaius: ['Chrom', 'Tharja'],
+    Henry: ['Tharja'],
     Lucina: ['Chrom'],
-    Tharja: ['Gaius']
+    Tharja: ['Gaius', 'Henry']
 }
 
 // Interface representando informações de cada personagem
@@ -31,6 +44,8 @@ export const CharactersSelection: React.FC<CharactersSelectionProps> = ({ onClos
     const [selectedCharacters, setSelectedCharacters] = useState<string[]>([]);
     const [gameStarted, setGameStarted] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
+    const [tipMessage, setTipMessage] = useState<string>('');
+
     const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
     const [allowStartDialogue, setAllowStartDialogue] = useState<boolean>(false);
 
@@ -38,7 +53,6 @@ export const CharactersSelection: React.FC<CharactersSelectionProps> = ({ onClos
     const [enableBackgroundMusic, setEnableBackgroundMusic] = useState<boolean>(false);
     const [enableAudioPlayer, setEnableAudioPlayer] = useState<boolean>(false);
     const [confirmChoices, setConfirmChoices] = useState<boolean>(false);
-
 
     const { language } = useLanguage();
 
@@ -51,7 +65,8 @@ export const CharactersSelection: React.FC<CharactersSelectionProps> = ({ onClos
             setSelectedCharacters((prevCharacters) => [...prevCharacters, character]);
             setErrorMessage('');
         } else {
-            setErrorMessage(selectTwoCharacters[language].text2)
+            setErrorMessage(errorOnlyTwoCharacters[language].text1);
+            setTipMessage(errorOnlyTwoCharacters[language].text2)
         }
     };
 
@@ -60,8 +75,12 @@ export const CharactersSelection: React.FC<CharactersSelectionProps> = ({ onClos
         if (selectedCharacters.length === 2 && isValidCharactersCombination()) {
             setGameStarted(true);
             setErrorMessage('');
+        } else if (selectedCharacters.length < 2) {
+            setErrorMessage(errorSelectTwoCharacters[language].text1)
+            setTipMessage(errorSelectTwoCharacters[language].text2)
         } else {
-            setErrorMessage(errorCharacterCombination[language])
+            setErrorMessage(errorCharactersCombination[language].text1)
+            setTipMessage(errorCharactersCombination[language].text2)
         }
     }
 
@@ -84,24 +103,54 @@ export const CharactersSelection: React.FC<CharactersSelectionProps> = ({ onClos
         { image: '/assets/images/TharjaCard.png', character: 'Tharja' }
     ]
 
-    // Função assíncrona para verificar carregamento de imagem
-    const checkImageLoad = async (src: string) => {
-        return new Promise<boolean>((resolve) => {
+    // Função assíncrona e constantes para verificar o carregamento das imagens das respectivas páginas, para assim renderizar o componente principal
+    const characters = ['Chrom', 'Gaius', 'Henry', 'Lucina', 'Nowi', 'Tharja'];
+    const emotions = ['Normal', 'Feliz', 'Raiva', 'Dor', 'Determinado', 'Background'];
+
+    const gamePageImages: string[] = [
+        '/assets/images/Conversations-background.jpg',
+        '/assets/images/backgroundawakening2.png',
+        '/assets/images/CharacterBox.png',
+        '/assets/images/DialogueBox.png',
+    ];
+
+    const characterImages: string[] = [];
+    const characterGifs: string[] = [];
+
+    characters.forEach(character => {
+        emotions.forEach(emotion => {
+            const imagePath = `/assets/images/${character}${emotion}.png`;
+            characterImages.push(imagePath);
+        })
+    })
+
+    characters.forEach(character => {
+        const imagePath = `/assets/images/${character}Gif.gif`;
+        characterGifs.push(imagePath);
+    })
+
+    const allImages = [
+        ...charactersCardsInfo.map(info => info.image),
+        ...characterImages,
+        ...characterGifs,
+        ...gamePageImages
+    ]
+
+    const checkImageLoad = async (urls: string[]) => {
+        const promises = urls.map(url => new Promise<boolean>((resolve) => {
             const img = new Image();
             img.onload = () => resolve(true);
             img.onerror = () => resolve(false);
-            img.src = src;
-        })
+            img.src = url;
+        }))
+        return Promise.all(promises)
     }
 
     // Função assíncrona para carregar imagens
     const loadImages = async () => {
         try {
-            const promises = charactersCardsInfo.map(async (characterInfo) => {
-                return await checkImageLoad(characterInfo.image);
-            });
-            const results = await Promise.all(promises);
-            const allLoaded = results.every((result) => result);
+            const results = await checkImageLoad(allImages);
+            const allLoaded = results.every(Boolean);
             setImagesLoaded(allLoaded);
         } catch (error) {
             console.error('Error loading images', error);
@@ -144,8 +193,8 @@ export const CharactersSelection: React.FC<CharactersSelectionProps> = ({ onClos
 
             <header className={styles.charactersHeader}>
                 <div>
-                    <h2>{selectCharactersText[language]}</h2>
-                    <h4>{selectTwoCharacters[language].text1}</h4>
+                    <h2>{selectCharactersText[language].text1}</h2>
+                    <h4>{selectCharactersText[language].text2}</h4>
                 </div>
 
                 <button className={`${styles.startDialogueButton} ${allowStartDialogue ? styles.allowStart : styles.notAllowStart}`} onClick={startGame}>{startGameText[language]}</button>
@@ -167,7 +216,9 @@ export const CharactersSelection: React.FC<CharactersSelectionProps> = ({ onClos
             {errorMessage && (
                 <div className={styles.errorDiv}>
                     <div>
+                        <h4>{warningMessageTitle[language]}</h4>
                         <p>{errorMessage}</p>
+                        <p><span>{tipMessageTitle[language]}</span> {tipMessage}</p>
                         <button onClick={() => setErrorMessage('')}>OK</button>
                     </div>
                 </div>

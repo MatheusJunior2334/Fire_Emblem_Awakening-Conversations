@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import styles from './fullScreenButton.module.scss';
+import styles from './fullScreenButton.module.scss'
+
+import { EnterFullscreenIcon } from "../../../../public/assets/icons/EnterFullscreenIcon";
+import { ExitFullscreenIcon } from "../../../../public/assets/icons/ExitFullscreenIcon";
 
 export const FullScreenButton: React.FC = () => {
     const [isFullScreen, setIsFullScreen] = useState(false);
@@ -41,11 +44,11 @@ export const FullScreenButton: React.FC = () => {
 
     return (
         <div id={styles.fullScreenButton}>
-            {!isFullScreen && (
-                <button ref={buttonRef} className={styles.fullScreenButtonContent} onClick={handleClick}>
-                    {isFullScreen ? 'Sair da Tela Cheia' : 'Entrar na Tela Cheia'}
-                </button>
-            )}
+            
+            <button ref={buttonRef} className={styles.fullScreenButtonContent} onClick={handleClick}>
+                {isFullScreen ? <ExitFullscreenIcon /> : <EnterFullscreenIcon />}
+            </button>
+            
         </div>
     )
 }

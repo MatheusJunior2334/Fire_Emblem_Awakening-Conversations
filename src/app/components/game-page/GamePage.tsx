@@ -1,12 +1,10 @@
-'use client'
-
 import React, { useEffect, useState } from "react";
 import { DialogueBox } from "./DialogueBox";
 import { CharacterImages } from "./CharacterImages";
 
 import { getDialoguesByCharacters } from "../../utils/dialogueUtils";
 
-import styles from './gamePage.module.scss';
+import styles from './GamePage.module.scss';
 
 import { AudioPlayer } from "../dialogues/AudioPlayer";
 import { BackgroundMusic } from "./BackgroundMusic";
@@ -73,6 +71,18 @@ export const GamePage: React.FC<GamePageProps> = ({ characters, language, enable
         onRestartGame();
     }
 
+    useEffect(() => {
+        const handleClick = () => {
+            handleNextDialog();
+        }
+
+        document.addEventListener('click', handleClick);
+
+        return () => {
+            document.removeEventListener('click', handleClick);
+        }
+    }, [dialogIndex, handleNextDialog])
+
     return (
         <section id={styles.gamePage} style={{ background: !showEndDialogue ? "url('/assets/images/Conversations-background.jpg') center / cover" : "url('/assets/images/backgroundawakening2.png') top / cover" }}>
             {showEndDialogue ? (
@@ -93,8 +103,6 @@ export const GamePage: React.FC<GamePageProps> = ({ characters, language, enable
                     {enableBackgroundMusic && <BackgroundMusic musicSrc={currentMusicSrc} />}
 
                     {dialogIndex > 0 && <button onClick={handlePreviousDialog} className={styles.previousButton}>Previous</button>}
-
-                    <button onClick={handleNextDialog} className={styles.nextButton}>Next</button>  
                 </>
             )}         
         </section>
