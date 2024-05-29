@@ -1,0 +1,65 @@
+// Fala entre Tharja e Gaius
+import { Translations } from "../../types/characterDialoguesTypes"
+
+export const GaiusTharjaDialogues: Translations = {
+    // Falas em inglês
+    en: {
+        prompt1: "You.",
+        prompt2: "Me?",
+        prompt3: "Yes, you. You're a thief, right? Skilled at pilfering and all that?",
+        prompt4: "I've got a little job for you.",
+        prompt5: "I'm listening...",
+        prompt6: "I want you to bring me a strand of Lucina's hair.",
+        prompt7: "That's...unbelievably creepy. What do you need her hair for?",
+        prompt8: "Hee hee...",
+        prompt9: "Um, yeah. I don't usually take sinister chuckles as an answer.",
+        prompt10: "Sorry, kid. Go find someone else to help with your weird hobbies.",
+        prompt11: "This is not a negotiable request.",
+        prompt12: "Oh? And what are you going to do about it, Sunshine? Curse me?",
+        prompt13: "Yes.",
+        prompt14: "Heh. Ain't a hexer alive that's managed to put a curse on Gaius the Nimble!",
+        prompt15: "Go on, Sunshine. Do your worst.",
+        prompt16: "You are making a terrible mistake...",
+        prompt17: "Ooh! So scaaary! Do you see me shaking here?",
+    },
+    // Falas em português brasileiro
+    pt: {
+        prompt1: "Você.",
+        prompt2: "Eu?",
+        prompt3: "Sim, você. Você é um ladrão, certo? Habilidoso em furtos e tudo mais?",
+        prompt4: "Tenho uma pequena tarefa para você.",
+        prompt5: "Estou ouvindo...",
+        prompt6: "Eu quero que você traga um fio do cabelo da Lucina.",
+        prompt7: "Isso é... incrivelmente estranho. Pra que você precisa disso?",
+        prompt8: "Hehehe...",
+        prompt9: "Ah, bem. Eu geralmente não aceito risadas sinistras como resposta.",
+        prompt10: "Desculpe, Gótica. Vá procurar outra pessoa pra ajudar com teus hobbies bizarros.",
+        prompt11: "Você não entendeu. Esse não é um pedido negociável.",
+        prompt12: "Ah, é? E o que você vai fazer a respeito, Gótica? Me amaldiçoar?",
+        prompt13: "Se você não aceitar, sim.",
+        prompt14: "Hehe. Nunca existiu um feiticeiro que tenha conseguido amaldiçoar Gaius, o Ágil!",
+        prompt15: "Vá em frente, Gótica. Dê o seu melhor.",
+        prompt16: "Você está cometendo um terrível erro...",
+        prompt17: "Aiaiai! Que medo! Você me vê tremendo aqui?",
+    },
+    // Falas em alemão
+    de: {
+        prompt1: "...Du!",
+        prompt2: "Iiiiich?",
+        prompt3: "Du warst doch mal ein Dieb, oder? Ein ausgebildeter Langfinger, stimmt's?",
+        prompt4: "Ich habe einen kleinen Auftrag für dich.",
+        prompt5: "Ich höre...",
+        prompt6: "Ich möchte, dass du mir eine Haarsträhne von Lucina bringst.",
+        prompt7: "Das hört sich... wirklich unheimlich an. Was willst du denn mit ihren Haar anstellen?",
+        prompt8: "Hehehe...",
+        prompt9: "Ähm, ja. Unheimliches Gekicher ist für mich keine ausreichende Antwort.",
+        prompt10: "Mit solch bizarren Freizeitbeschäftigungen möchte ich sowieso nichts zu tun haben.",
+        prompt11: "Du verstehst wohl nicht. Dieses Anliegen ist nicht verhandelbar.",
+        prompt12: "Oh? Und was wirst du dagegen machen, Zuckerpuppe? Mich verfluchen?",
+        prompt13: "Jetzt hast du verstanden.",
+        prompt14: "Hehe! Noch hat es kein Magier geschafft, Gaius den Geschickten zu verfluchen!",
+        prompt15: "Versuch es doch, Zuckerpuppe. Los, gib dein Bestes.",
+        prompt16: "Du machst gerade einen fürchterlichen Fehler.",
+        prompt17: "Uiuiui! Ich hab ja sooolche Aaangst! Buuuh! Schau mich nur an! Ich füüürchte mich so!",
+    }
+}

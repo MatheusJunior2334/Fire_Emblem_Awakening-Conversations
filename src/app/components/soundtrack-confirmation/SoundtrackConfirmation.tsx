@@ -1,8 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import styles from './SoundtrackConfirmation.module.scss';
-import { TranslationsType1, TranslationsType2, useLanguage } from "@/app/contexts/LanguageContext";
-
+import styles from '../../styles/soundtrackConfirmation.module.scss';
+import { TranslationsType1, TranslationsType2, useLanguage } from "@/app/contexts/languageContext";
 
 import { AudioOnIcon } from "../../../../public/assets/icons/AudioOnIcon";
 import { AudioOffIcon } from "../../../../public/assets/icons/AudioOffIcon";

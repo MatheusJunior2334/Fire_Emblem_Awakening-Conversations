@@ -1,0 +1,85 @@
+// Animações
+
+@keyframes foglayer_01_opacity {
+    0% { opacity: .1; }
+    22% { opacity: .5; }
+    40% { opacity: .28; }
+    58% { opacity: .4; }
+    80% { opacity: .16; }
+    100% { opacity: .1; }
+}
+  
+@keyframes foglayer_02_opacity {
+    0% { opacity: .5; }
+    25% { opacity: .2; }
+    50% { opacity: .1; }
+    80% { opacity: .3; }
+    100% { opacity: .5; }
+}
+  
+@keyframes foglayer_03_opacity {
+    0% { opacity: .8 }
+    27% { opacity: .2; }
+    52% { opacity: .6; }
+    68% { opacity: .3; }
+    100% { opacity: .8; }
+}
+  
+@keyframes foglayer_moveme {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+
+// Estilização principal
+
+.fogLayer {
+    position: fixed;
+    width: 200%;
+    height: 100%;
+    top: 0;
+    filter: blur(1px) grayscale(0.2) saturate(1.2) sepia(0.2);
+
+    overflow-x: hidden;
+}
+
+.image {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.image01, .image02 {
+    background: url("../../../public/assets/images/FogImage1.png") center center/cover no-repeat transparent;
+}
+
+#fog {
+    width: 100vw;
+    height: 100lvh;
+    position: fixed;
+
+    animation: foglayer_moveme 25s linear infinite, foglayer_01_opacity 20s linear infinite;
+
+    .image {
+        width: 50%;
+        height: 100%;
+    }
+
+    .image1, .image2 {
+        background: url("../../../public/assets/images/FogImage2.png") center center/cover no-repeat transparent;
+    }
+}
+
+#foglayer_01 {
+    animation: foglayer_moveme 25s linear infinite;
+}
+  
+#foglayer_02, #foglayer_03 {
+    animation: foglayer_moveme 23s linear infinite;
+}
+
+
+@media only screen and (min-width: 280px) and (max-width: 767px) {
+    .image01, .image02 {
+        width: 100%;
+    }
+}

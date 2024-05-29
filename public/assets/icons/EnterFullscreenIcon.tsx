@@ -1,4 +1,4 @@
-import styles from '../../../src/app/components/fullscreen-modal/fullScreenButton.module.scss'
+import styles from '../../../src/app/styles/fullscreenButton.module.scss'
 
 export const EnterFullscreenIcon = () => {
     return (

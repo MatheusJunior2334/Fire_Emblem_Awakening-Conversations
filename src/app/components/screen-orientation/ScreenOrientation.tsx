@@ -1,9 +1,9 @@
 import React from "react";
-import styles from './ScreenOrientation.module.scss';
+import styles from '../../styles/screenOrientation.module.scss';
 
 import { RotatePhoneIcon } from "../../../../public/assets/icons/RotatePhoneIcon";
 
-import { TranslationsType1, useLanguage } from "@/app/contexts/LanguageContext";
+import { TranslationsType1, useLanguage } from "@/app/contexts/languageContext";
 
 const screenOrientationText: TranslationsType1 = {
     pt: "Gire o dispositivo para o modo paisagem para melhor experiência na plataforma",

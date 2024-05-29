@@ -1,30 +1,45 @@
-import { Dialogue } from "../components/dialogues/characterDialogues";
+import { Dialogue } from "../types/characterDialoguesTypes";
 
-import { ChromLucina } from "../components/dialogues/characterDialogues";
-import { ChromLucinaDialogues } from "../components/dialogues/chromLucinaDialogues";
+import { ChromLucina } from "../data/dialogues/characterDialogues";
+import { ChromLucinaDialogues } from "../data/dialogues/chromLucinaDialogues";
 
-import { ChromGaius } from "../components/dialogues/characterDialogues";
-import { ChromGaiusDialogues } from "../components/dialogues/chromGaiusDialogues";
+import { ChromGaius } from "../data/dialogues/characterDialogues";
+import { ChromGaiusDialogues } from "../data/dialogues/chromGaiusDialogues";
 
-import { GaiusTharja } from "../components/dialogues/characterDialogues";
-import { GaiusTharjaDialogues } from "../components/dialogues/gaiusTharjaDialogues";
+import { GaiusCordelia } from "../data/dialogues/characterDialogues";
+import { GaiusCordeliaDialogues } from "../data/dialogues/gaiusCordeliaDialogues";
 
-import { HenryTharja } from "../components/dialogues/characterDialogues";
-import { HenryTharjaDialogues } from "../components/dialogues/henryTharjaDialogues";
+import { GaiusTharja } from "../data/dialogues/characterDialogues";
+import { GaiusTharjaDialogues } from "../data/dialogues/gaiusTharjaDialogues";
 
-export const getLocalizedText = (textKey: string, lang: string, character: string): string => {
-    switch (character) {
-        case 'Chrom,Lucina' || 'Lucina,Chrom':
+import { HenryTharja } from "../data/dialogues/characterDialogues";
+import { HenryTharjaDialogues } from "../data/dialogues/henryTharjaDialogues";
+
+import { LissaChrom } from "../data/dialogues/characterDialogues";
+import { LissaChromDialogues } from "../data/dialogues/lissaChromDialogues";
+
+export const getLocalizedText = (textKey: string, lang: string, characters: string[]): string => {
+    const sortedCharacters = characters.sort();
+    const characterKey = sortedCharacters.join();
+
+    switch (characterKey) {
+        case 'Chrom,Lucina':
             return ChromLucinaDialogues[lang][textKey] || textKey; 
 
-        case 'Chrom,Gaius' || 'Gaius,Chrom':
+        case 'Chrom,Gaius':
             return ChromGaiusDialogues[lang][textKey] || textKey;
 
-        case 'Gaius,Tharja' || 'Tharja,Gaius':
+        case 'Cordelia,Gaius':
+            return GaiusCordeliaDialogues[lang][textKey] || textKey;
+
+        case 'Gaius,Tharja':
             return GaiusTharjaDialogues[lang][textKey] || textKey;
 
-        case 'Henry,Tharja' || 'Tharja,Henry':
+        case 'Henry,Tharja':
             return HenryTharjaDialogues[lang][textKey] || textKey;
+
+        case 'Chrom,Lissa':
+            return LissaChromDialogues[lang][textKey] || textKey;
 
         default:
             return textKey;
@@ -32,32 +47,48 @@ export const getLocalizedText = (textKey: string, lang: string, character: strin
 }
 
 export const getDialoguesByCharacters = (characters: string[], lang: string): Dialogue[] => {
-    const sortedCharacters = characters.sort();
+    const sortedCharacters = characters.slice().sort();
     const characterKey = sortedCharacters.join();
+
+    const shouldReverse = (characterKey === 'Chrom,Lissa' || characterKey === 'Cordelia,Gaius');
+
+    const finalCharacters = shouldReverse ? sortedCharacters.reverse() : sortedCharacters;
 
     switch (characterKey) {
         case 'Chrom,Lucina':
             return ChromLucina.map((dialogue) => ({
                 ...dialogue,
-                text: getLocalizedText(dialogue.text, lang, characterKey)
+                text: getLocalizedText(dialogue.text, lang, finalCharacters)
             }))
 
         case 'Chrom,Gaius':
             return ChromGaius.map((dialogue) => ({
                 ...dialogue,
-                text: getLocalizedText(dialogue.text, lang, characterKey)
+                text: getLocalizedText(dialogue.text, lang, finalCharacters)
+            }))
+
+        case 'Cordelia,Gaius':
+            return GaiusCordelia.map((dialogue) => ({
+                ...dialogue,
+                text: getLocalizedText(dialogue.text, lang, finalCharacters)
             }))
 
         case 'Gaius,Tharja':
             return GaiusTharja.map((dialogue) => ({
                 ...dialogue,
-                text: getLocalizedText(dialogue.text, lang, characterKey)
+                text: getLocalizedText(dialogue.text, lang, finalCharacters)
             }))
 
         case 'Henry,Tharja':
             return HenryTharja.map((dialogue) => ({
                 ...dialogue,
-                text: getLocalizedText(dialogue.text, lang, characterKey)
+                text: getLocalizedText(dialogue.text, lang, finalCharacters)
+            }))
+
+        case 'Chrom,Lissa':
+            return LissaChrom.map((dialogue) => ({
+                ...dialogue,
+                text: getLocalizedText(dialogue.text, lang, finalCharacters)
             }))
 
         default:

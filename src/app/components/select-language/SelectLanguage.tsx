@@ -1,11 +1,11 @@
 import React from 'react';
-import styles from './SelectLanguage.module.scss';
+import styles from '../../styles/selectLanguage.module.scss';
 
 import { PortugueseLanguageIcon } from '../../../../public/assets/icons/PortugueseLanguageIcon';
 import { EnglishLanguageIcon } from '../../../../public/assets/icons/EnglishLanguageIcon';
 import { GermanLanguageIcon } from '../../../../public/assets/icons/GermanLanguageIcon';
 
-import { useLanguage, TranslationsType1 } from '../../contexts/LanguageContext';
+import { useLanguage, TranslationsType1 } from '../../contexts/languageContext';
 
 interface LanguageButtonProps {
     languageCode: string;
@@ -35,7 +35,7 @@ const LanguageButton: React.FC<LanguageButtonProps> = ({ languageCode, selectedL
 }
 
 export const SelectLanguage: React.FC = () => {
-    const { language, islanguageConfirmed } = useLanguage();
+    const { language, isLanguageConfirmed } = useLanguage();
 
     const translations: TranslationsType1 = {
         pt: 'Selecionar idioma',
@@ -43,7 +43,7 @@ export const SelectLanguage: React.FC = () => {
         de: 'Sprache auswählen'
     }
 
-    if (islanguageConfirmed) {
+    if (isLanguageConfirmed) {
         return null;
     }
 

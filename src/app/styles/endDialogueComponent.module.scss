@@ -1,0 +1,67 @@
+@import '../page.module.scss';
+
+.endDialogueComponent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+
+    .endDialogueBackdrop {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #00000070;
+        z-index: 1;
+    }
+
+    .endDialogueBox {
+        width: 525px;
+        height: 270px;
+        background-image: url('../../../public/assets/images/HomeTextBox.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        z-index: 2;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 20px;
+
+        p { @include text-primary(); color: #000; width: 90%; }
+
+        button {
+            @include button-primary();
+            border-radius: 8px;
+            padding: 5px 25px;
+            margin-top: 18px;
+            border: 1px solid #111;
+        }
+    }
+}
+
+// Responsividade
+@media #{$tablet} {
+    .endDialogueComponent {
+        .endDialogueBox {
+            width: 420px;
+            height: 216px;
+        }
+    }
+}
+
+@media #{$mobile} {
+    .endDialogueComponent {
+        .endDialogueBox {
+            width: 275px;
+            height: 140px;
+
+            p { font-size: 18px; }
+        }
+    }
+}

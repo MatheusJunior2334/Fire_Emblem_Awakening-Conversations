@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from './CharactersCard.module.scss';
+import styles from '../../styles/charactersCard.module.scss';
 
-import { useLanguage} from '@/app/contexts/LanguageContext';
-import { CharacterInfo } from './CharactersSelection';
-import { characterTextCard } from '@/app/components/characters-selection/charactersSelectionTranslations';
+import { useLanguage} from '@/app/contexts/languageContext';
+import { CharacterInfo } from './charactersSelection';
+import { characterTextCard } from '@/app/data/translations/charactersSelection';
 
 interface CharacterCardProps extends CharacterInfo {
     isSelected: boolean;
@@ -20,6 +20,25 @@ export const CharactersCard: React.FC<CharacterCardProps>  = ({ image, character
     // Constante para facilitar a nomeação do personagem para escolher a classe (estilização) adjacente
     const classCharacter = character.toLowerCase();
 
+    // Constante para definir tamanho das imagens, para melhor performance
+    const getImageSize = () => {
+        let size = 450;
+
+        if (typeof window !== 'undefined') {
+            const width = window.innerWidth;
+
+            if (width >= 1280) {
+                size = 450;
+            } else if (width <= 768) {
+                size = 200;
+            } else if (width <= 480) {
+                size = 100;
+            }
+        }
+
+        return size;
+    }
+
     // Constante para organizar o nome dos personagens em ordem alfabética, para evitar erros no alt
 
     return (
@@ -28,7 +47,7 @@ export const CharactersCard: React.FC<CharacterCardProps>  = ({ image, character
             id={styles.charactersCard}
             onClick={onClick}
             style={{
-                background: isSelected ? `#D9D9D9 ${backgroundImage} 50% / cover no-repeat`: '#D9D9D9 50%'
+                background: isSelected ? `#E0E0E0 ${backgroundImage} 50% / cover no-repeat`: '#E0E0E0 50%'
             }}
             title={`${!isSelected ? characterTextCard[language].text1 : characterTextCard[language].text2}: ${character}`}
         >
@@ -38,8 +57,8 @@ export const CharactersCard: React.FC<CharacterCardProps>  = ({ image, character
                 src={image}
                 alt={character}
                 priority
-                width={450}
-                height={450}
+                width={getImageSize()}
+                height={getImageSize()}
             />
            </div>
           

@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[NEXT__BADGE]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[TYPESCRIPT__BADGE]: https://img.shields.io/badge/typescript-000000?style=for-the-badge&logo=typescript
+[SASS__BADGE]: https://img.shields.io/badge/sass-000000?style=for-the-badge&logo=sass
+[PROJECT__BADGE]: https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project
+[PROJECT__URL]: https://fire-emblem-awakening-conversations.vercel.app/
 
-## Getting Started
+# Fire Emblem Awakening - Conversations 💻
 
-First, run the development server:
+![next][NEXT__BADGE]
+![typescript][TYPESCRIPT__BADGE]
+![sass][SASS__BADGE]
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](/LICENSE)  
+
+[<img src="./public/ProjectHomeImage.png" alt="FE Awakening website" width="800px" />](./public/ProjectHomeImage.png)
+
+## 📌 About
+
+A project made by me (Matheus Junior), where you can select a pair of characters from the game: “Fire Emblem Awakening”, to watch a dialogue between them — the same as support log from the original game.
+
+This project was build in `Next.js` version `14.2.3` using `App Router` render mode.
+
+[![project][PROJECT__BADGE]][PROJECT__URL]
+
+## 🤔 How to run the project in your device?
 
 ```bash
-npm run dev
+# Clone this repository
+$ git clone https://github.com/MatheusJunior2334/Fire_Emblem_Awakening-Conversations.git
+
+# Navigate to the project directory
+$ cd fire-emblem_conversations
+
+# Install the dependencies
+$ npm install
+
+# Run the project
+$ npm run dev
+# Alternatively, you can use:
+$ yarn dev
 # or
-yarn dev
+$ pnpm dev
 # or
-pnpm dev
-# or
-bun dev
+$ bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✍ Credits
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project incorporates images and icons from the following sources:
 
-## Learn More
+- [Fire Emblem Wars of Dragons](https://www.fireemblemwod.com/) and [Fandom - Fire Emblem](https://fireemblem.fandom.com/wiki/Fire_Emblem_Awakening): for characters images
+- [Fire Emblem Wiki](https://fireemblemwiki.org/): for characters gifs
+- [Icons8](https://icons8.com/) and [UXWing](https://uxwing.com/): for icons
 
-To learn more about Next.js, take a look at the following resources:
+All rights to Fire Emblem Awakening belong to [Nintendo](https://www.nintendo.com/us/) and [Intelligent Systems](https://www.intsys.co.jp/).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Creator
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://www.linkedin.com/in/matheus-júnior">
+        <img src="./public/assets/images/MatheusJuniorImage.png" width="100px" alt="Matheus Júnior picture"/><br>
+        <sub>
+          <b>Matheus Júnior</b>
+          <br />
+          <a href="#" title="Code">💻</a>
+          <a href="#" title="Design">🎨</a>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
-## Deploy on Vercel
+## 📝 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the [MIT](/LICENSE) Licence
