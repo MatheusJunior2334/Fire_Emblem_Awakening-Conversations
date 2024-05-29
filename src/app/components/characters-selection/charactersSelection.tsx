@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { CharactersConversation } from "../characters-conversation/charactersConversation";
 import styles from '../../styles/charactersSelection.module.scss';
-import { CharactersCard } from "./charactersCardComponent";
+import { CharactersCard } from "./charactersCard";
 
-import { useLanguage } from "../../../app/contexts/languageContextProvider";
+import { useLanguage } from "../../../app/contexts/languageContext";
 
 import {
     selectCharactersText,
@@ -17,7 +17,7 @@ import {
     changeDialoguesLanguage,
 } from "../../data/translations/charactersSelection";
 
-import { SoundtrackConfirmation } from "../soundtrack-confirmation/soundtrackConfirmationComponent";
+import { SoundtrackConfirmation } from "../soundtrack-confirmation/soundtrackConfirmation";
 import Loading from "@/app/loading";
 
 // Mapeamento de combinações válidas entre personagens

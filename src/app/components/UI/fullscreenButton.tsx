@@ -3,7 +3,7 @@ import styles from '../../styles/fullscreenButton.module.scss'
 
 import { EnterFullscreenIcon } from "../../../../public/assets/icons/EnterFullscreenIcon";
 import { ExitFullscreenIcon } from "../../../../public/assets/icons/ExitFullscreenIcon";
-import { useLanguage, TranslationsType1 } from "../../../app/contexts/languageContextProvider";
+import { useLanguage, TranslationsType1 } from "../../../app/contexts/languageContext";
 
 const fullScreenTitleText: TranslationsType1 = {
     pt: 'Tela cheia',

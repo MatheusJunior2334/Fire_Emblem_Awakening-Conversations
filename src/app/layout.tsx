@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Fredoka } from 'next/font/google'
 import './globals.css'
-import { LanguageProvider } from './contexts/languageContextProvider'
+import { LanguageProvider } from './contexts/languageContext'
 
 const fredoka = Fredoka({ subsets: ['latin'] })
 

@@ -2,7 +2,7 @@
 
 import styles from './styles/loading.module.scss';
 import { loadingText } from "./data/translations/charactersSelection";
-import { useLanguage } from "./contexts/languageContextProvider";
+import { useLanguage } from "./contexts/languageContext";
 
 export default function Loading() {
     const { language } = useLanguage()

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles/startGame.module.scss';
 
-import { CharactersSelection } from '../characters-selection/charactersSelectionComponent';
-import { SelectLanguage } from '../select-language/selectLanguageComponent';
-import { useLanguage, TranslationsType1, TranslationsType2 } from '../../../app/contexts/languageContextProvider';
+import { CharactersSelection } from '../characters-selection/charactersSelection';
+import { SelectLanguage } from '../select-language/selectLanguage';
+import { useLanguage, TranslationsType1, TranslationsType2 } from '../../../app/contexts/languageContext';
 import { useOrientation } from '../../hooks/useOrientation';
 import { shouldPromptOrientationChange } from '@/app/utils/orientationUtils';
-import { ScreenOrientation } from '../screen-orientation/screenOrientationComponent';
+import { ScreenOrientation } from '../screen-orientation/screenOrientation';
 import { FullScreenButton } from '../UI/fullscreenButton';
 
 import { PortugueseLanguageIcon } from '../../../../public/assets/icons/PortugueseLanguageIcon';
