@@ -1,4 +1,4 @@
-import { TranslationsType1, TranslationsType2 } from "../../contexts/languageContext";
+import { TranslationsType1, TranslationsType2 } from "../../contexts/languageContextProvider";
 
 // Informações do componente a serem renderizados de acordo com o idioma escolhido
 

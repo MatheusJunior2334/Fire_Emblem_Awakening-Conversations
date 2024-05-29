@@ -15,7 +15,6 @@ import {
     startGameText,
     backHomeText,
     changeDialoguesLanguage,
-    loadingText,
 } from "../../data/translations/charactersSelection";
 
 import { SoundtrackConfirmation } from "../soundtrack-confirmation/soundtrackConfirmationComponent";
