@@ -2,8 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import styles from '../../styles/charactersCard.module.scss';
 
-import { useLanguage} from '@/app/contexts/languageContext';
-import { CharacterInfo } from './charactersSelection';
+import { useLanguage} from '@/app/contexts/languageContextProvider';
+import { CharacterInfo } from './charactersSelectionComponent';
 import { characterTextCard } from '@/app/data/translations/charactersSelection';
 
 interface CharacterCardProps extends CharacterInfo {

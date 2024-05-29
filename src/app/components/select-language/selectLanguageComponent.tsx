@@ -5,7 +5,7 @@ import { PortugueseLanguageIcon } from '../../../../public/assets/icons/Portugue
 import { EnglishLanguageIcon } from '../../../../public/assets/icons/EnglishLanguageIcon';
 import { GermanLanguageIcon } from '../../../../public/assets/icons/GermanLanguageIcon';
 
-import { useLanguage, TranslationsType1 } from '../../contexts/languageContext';
+import { useLanguage, TranslationsType1 } from '../../contexts/languageContextProvider';
 
 interface LanguageButtonProps {
     languageCode: string;

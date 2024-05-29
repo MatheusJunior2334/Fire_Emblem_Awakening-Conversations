@@ -3,7 +3,7 @@ import { CharactersConversation } from "../characters-conversation/charactersCon
 import styles from '../../styles/charactersSelection.module.scss';
 import { CharactersCard } from "./charactersCard";
 
-import { useLanguage } from "@/app/contexts/languageContext";
+import { useLanguage } from "../../../app/contexts/languageContextProvider";
 
 import {
     selectCharactersText,
@@ -220,9 +220,6 @@ export const CharactersSelection: React.FC<CharactersSelectionProps> = ({ onClos
             </div>
         </div>  
     )
-
-    const text = loadingText[language];
-    const spans = text.split('').map((char, index) => <span key={index}>{char}</span>)
 
     return (
         <div>
