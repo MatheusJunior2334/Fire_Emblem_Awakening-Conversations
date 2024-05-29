@@ -10,7 +10,7 @@ import { CharacterAudioPlayer } from "./characterAudioPlayer";
 import { BackgroundMusic } from "./backgroundMusic";
 import { EndDialogueComponent } from "../end-dialogue-component/endDialogueComponent";
 import { selectCharactersText } from "../../data/translations/charactersSelection";
-import { FogBackground } from "../fog-background/FogBackground";
+import { FogBackground } from "../fog-background/fogBackground";
 
 interface CharactersConversationProps {
     characters: string[];
