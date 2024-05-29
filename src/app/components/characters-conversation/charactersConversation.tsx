@@ -8,7 +8,7 @@ import styles from '../../styles/charactersConversation.module.scss';
 
 import { CharacterAudioPlayer } from "./characterAudioPlayer";
 import { BackgroundMusic } from "./backgroundMusic";
-import { EndDialogueComponent } from "../end-dialogue-component/endDialogueComponent";
+import { EndDialogueComponent } from "../end-dialogue-component/endDialogue";
 import { selectCharactersText } from "../../data/translations/charactersSelection";
 import { FogBackground } from "../fog-background/fogBackground";
 

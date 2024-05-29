@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { CharactersConversation } from "../characters-conversation/charactersConversation";
 import styles from '../../styles/charactersSelection.module.scss';
-import { CharactersCard } from "./charactersCard";
+import { CharactersCard } from "./charactersCardComponent";
 
 import { useLanguage } from "../../../app/contexts/languageContextProvider";
 
@@ -18,7 +18,7 @@ import {
     loadingText,
 } from "../../data/translations/charactersSelection";
 
-import { SoundtrackConfirmation } from "../soundtrack-confirmation/soundtrackConfirmation";
+import { SoundtrackConfirmation } from "../soundtrack-confirmation/soundtrackConfirmationComponent";
 import Loading from "@/app/loading";
 
 // Mapeamento de combinações válidas entre personagens
